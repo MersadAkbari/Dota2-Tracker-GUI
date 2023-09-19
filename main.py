@@ -38,7 +38,7 @@ class App(QMainWindow):
         self.textbox = QLineEdit(self)
         self.textbox.move(20, 20)
         self.textbox.resize(280,40)
-        
+        self.textbox.setPlaceholderText("Enter your account id here.") 
         # Create a button in the window
         self.button = QPushButton('Submit', self)
         self.button.move(20,80)
@@ -56,7 +56,7 @@ class App(QMainWindow):
         data = r.json()
         names = ""
         for name in data:
-               names += str(name)
+               names = names + str(name['personaname'])+"\n"
         QMessageBox.question(self, 'Here U are', "your peers are " + names , QMessageBox.Ok, QMessageBox.Ok)
         self.textbox.setText("")
 	
