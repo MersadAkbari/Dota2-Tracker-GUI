@@ -4,3 +4,10 @@ A GUI application for tracking Dota2 accounts,teams,etc information.
 Motivation for creating it : CS50x Final Proejct :D
 
 this application uses OpenDota API for tracking information and PYQT5 for GUI
+
+
+### Usage:
+```
+sudo pip install -r requirements.txt
+python3 main.py
+```
