@@ -2,7 +2,11 @@
 # Mersad23Akbari@gmail.com
 
 import requests
-import json 
+import json
+import os
+
+#Check if pyqt is installd, install it if not
+os.system("sudo apt install python3-pyqt5") 
 '''
 data = r.json()
 players = data['players']
