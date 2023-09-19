@@ -20,9 +20,44 @@ f.write(str(data))
 f.close()
 '''
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QPushButton, QAction, QLineEdit, QMessageBox, QMenuBar, QMenu, QRadioButton
+
+from PyQt5.QtGui import QIcon, QPalette, QColor
+from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5 import QtCore
+app = QApplication(sys.argv)
+def darkmode():
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(53, 53, 53))
+    palette.setColor(QPalette.WindowText, Qt.white)
+    palette.setColor(QPalette.Base, QColor(25, 25, 25))
+    palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+    palette.setColor(QPalette.ToolTipBase, Qt.black)
+    palette.setColor(QPalette.ToolTipText, Qt.white)
+    palette.setColor(QPalette.Text, Qt.white)
+    palette.setColor(QPalette.Button, QColor(53, 53, 53))
+    palette.setColor(QPalette.ButtonText, Qt.white)
+    palette.setColor(QPalette.BrightText, Qt.red)
+    palette.setColor(QPalette.Link, QColor(42, 130, 218))
+    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+    palette.setColor(QPalette.HighlightedText, Qt.black)
+    app.setPalette(palette) 
+def lightmode():
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(172, 179, 194))
+    palette.setColor(QPalette.WindowText, Qt.black)
+    palette.setColor(QPalette.Base, QColor(108, 119, 130))
+    palette.setColor(QPalette.AlternateBase, QColor(172, 179, 194))
+    palette.setColor(QPalette.ToolTipBase, Qt.white)
+    palette.setColor(QPalette.ToolTipText, Qt.black)
+    palette.setColor(QPalette.Text, Qt.black)
+    palette.setColor(QPalette.Button, QColor(172, 179, 194))
+    palette.setColor(QPalette.ButtonText, Qt.black)
+    palette.setColor(QPalette.BrightText, Qt.red)
+    palette.setColor(QPalette.Link, QColor(42, 130, 218))
+    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+    palette.setColor(QPalette.HighlightedText, Qt.white)
+    app.setPalette(palette) 
 
 class App(QMainWindow):
 
@@ -32,9 +67,13 @@ class App(QMainWindow):
         self.left = 10
         self.top = 10
         self.width = 400
-        self.height = 140
+        self.height = 340
         self.initUI()
-    
+        self.statusBar().showMessage('GitHub.com/MersadAkbari')        
+        lightmode()
+       # adding 2 checkboxes for theme switch
+        
+
     def initUI(self):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
@@ -49,7 +88,39 @@ class App(QMainWindow):
         
         # connect button to function on_click
         self.button.clicked.connect(self.on_click)
+         
+        # creating a push button
+        self.button2 = QPushButton("Enter Dark Mode", self)
+        # setting geometry of button
+        self.button2.move(20,160) 
+        # setting checkable to true
+        self.button2.setCheckable(True)
+        self.button2.setChecked(True)
+        # setting calling method by button
+        self.button2.clicked.connect(self.changeColor)
+ 
+        # setting default color of button to light-grey
+        self.button2.setStyleSheet("background-color : lightgrey")
+ 
+        # show all the widgets
+        self.update()
         self.show()
+   
+    # method called by button
+    def changeColor(self):
+ 
+        # if button is checked
+        if self.button2.isChecked():
+            lightmode()
+            # setting background color to light-blue
+            self.button2.setText("Enter Dark Mode")             
+            app.setStyle("")
+        # if it is unchecked
+        else:
+            
+            # set background color back to light-grey
+            darkmode()
+            self.button2.setText("Enter Light Mode") 
 	
     @pyqtSlot()
     def on_click(self):
@@ -63,8 +134,26 @@ class App(QMainWindow):
                names = names + str(name['personaname'])+"\n"
         QMessageBox.question(self, 'Here U are', "your peers are " + names , QMessageBox.Ok, QMessageBox.Ok)
         self.textbox.setText("")
-	
+
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
+    app.setStyle("Fusion")
     ex = App()
     sys.exit(app.exec_())
+
+'''
+    palette = QPalette()
+    palette.setColor(QPalette.Window, QColor(53, 53, 53))
+    palette.setColor(QPalette.WindowText, Qt.white)
+    palette.setColor(QPalette.Base, QColor(25, 25, 25))
+    palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
+    palette.setColor(QPalette.ToolTipBase, Qt.black)
+    palette.setColor(QPalette.ToolTipText, Qt.white)
+    palette.setColor(QPalette.Text, Qt.white)
+    palette.setColor(QPalette.Button, QColor(53, 53, 53))
+    palette.setColor(QPalette.ButtonText, Qt.white)
+    palette.setColor(QPalette.BrightText, Qt.red)
+    palette.setColor(QPalette.Link, QColor(42, 130, 218))
+    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
+    palette.setColor(QPalette.HighlightedText, Qt.black)
+    app.setPalette(palette)
+'''
