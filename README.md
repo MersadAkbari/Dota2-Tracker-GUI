@@ -16,15 +16,15 @@ python3 main.py
 
 #### TODO:
 * Information of players
-  * Ranks
-  * Name and Profile Pictures
-  * Wins
-  * Loss
-  * Gold and XP
+  * - [ ] Ranks
+  * - [x] Name and Profile Pictures
+  * - [x] Wins
+  * - [x] Loss
+  * - [ ] Gold and XP
   * etc
-* Information of matches
-  *  Duration
-  *  Number of bought divines
-  *  etc
+*   Information of matches
+    *  - [ ] Duration
+    *  - [ ] Number of bought divines
+    *  etc
 
 .
